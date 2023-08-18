@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Tracker</h1>
+        <button id="createTaskButton">Create Task</button>
+        <div id="taskFormContainer" class="form-container">
+            <form method="POST" id="taskForm">
+                <div class="form-group">
+                    <label for="habit">Add Task:</label>
+                    <input type="text" id="habit" name="habit" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Add</button>
+                </div>
+                <div class="form-group">
+                    <button type="button" id="cancelTaskButton">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <ul>
+            {% for habit in habits %}
+            <li>
+                <a href="{{ url_for('complete_habit', habit_index=loop.index0) }}" class="completed">
+                    {% if habit.completed %}✓{% else %}&#x25CB;{% endif %}
+                </a>
+                {{ habit.name }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class = "progress-container">
+        <h1>Progress</h1>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ completion_percentage }}%;" aria-valuenow="{{ completion_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ completion_percentage }}%</div>
+        </div>  
+    </div>  
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='eventHandlers.js') }}"></script>
+</html>
+
