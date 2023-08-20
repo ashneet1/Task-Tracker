@@ -89,3 +89,28 @@ li {
 .form-group {
     margin-bottom: 10px;
 }
+
+.task-box {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box-red {
+    background-color: rgba(255, 0, 0, 0.2); 
+    border: 1px solid rgba(255, 0, 0, 0.4); 
+}
+
+.box-yellow {
+    background-color: rgba(255, 255, 0, 0.2); 
+    border: 1px solid rgba(255, 255, 0, 0.4); 
+}
+
+.box-blue {
+    background-color: rgba(0, 0, 255, 0.2); 
+    border: 1px solid rgba(0, 0, 255, 0.4); 
+}

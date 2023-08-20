@@ -8,12 +8,20 @@
 <body>
     <div class="container">
         <h1>Task Tracker</h1>
-        <button id="createTaskButton">Create Task</button>
+        <button id="createTaskButton" style="margin-bottom: 20px;">Create Task</button>
         <div id="taskFormContainer" class="form-container">
             <form method="POST" id="taskForm">
                 <div class="form-group">
                     <label for="habit">Add Task:</label>
                     <input type="text" id="habit" name="habit" required>
+                </div>
+                <div class="form-group">
+                    <label for="importance">Choose Importance:</label>
+                    <select id="importance" name="importance">
+                        <option value="box-red">red</option>
+                        <option value="box-yellow">yellow</option>
+                        <option value="box-blue">blue</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <button type="submit">Add</button>
@@ -25,7 +33,7 @@
         </div>
         <ul>
             {% for habit in habits %}
-            <li>
+            <li class = "task-box {{ habit.importance }}">
                 <a href="{{ url_for('complete_habit', habit_index=loop.index0) }}" class="completed">
                     {% if habit.completed %}✓{% else %}&#x25CB;{% endif %}
                 </a>

@@ -10,8 +10,9 @@ def index():
     
     if request.method == 'POST':
         habit = request.form.get('habit')
+        importance = request.form.get('importance')
         if habit:
-            habits.append({'name': habit, 'completed': False})
+            habits.append({'name': habit, 'completed': False, 'importance': importance})
     completion_percentage = calculateHabitPercentage(habits)   
     return render_template('index.html', habits=habits , completion_percentage = completion_percentage)
 
