@@ -4,6 +4,7 @@
     <title>Task Tracker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -38,6 +39,9 @@
                     {% if habit.completed %}✓{% else %}&#x25CB;{% endif %}
                 </a>
                 {{ habit.name }}
+                <a href="{{ url_for('delete_habit', habit_index=loop.index0) }}" class="delete-task">
+                    <i class="bi bi-trash"></i>
+                </a>
             </li>
             {% endfor %}
         </ul>

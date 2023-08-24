@@ -32,6 +32,13 @@ def calculateHabitPercentage(habits):
     else: completion_percentage = 0
     return completion_percentage
 
+@app.route('/delete/<int:habit_index>')
+def delete_habit(habit_index):
+    if 0 <= habit_index < len(habits):
+        del habits[habit_index]
+    return redirect(url_for('index'))
+
+
 if __name__ == '__main__':
     app.run()
 

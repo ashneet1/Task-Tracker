@@ -11,4 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
     cancelTaskButton.addEventListener('click', () => {
         taskFormContainer.style.display = 'none';
     });
+
+    deleteTaskIcons.forEach(icon => {
+        icon.addEventListener('click', function(event) {
+            event.preventDefault();
+            const habitIndex = icon.getAttribute('href').split('/').pop();
+            fetch(`/delete/${habitIndex}`, { method: 'GET' })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    }
+                });
+        });
+    });
 });
