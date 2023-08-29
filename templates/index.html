@@ -18,11 +18,11 @@
                 </div>
                 <div class="form-group">
                     <label for="importance">Choose Importance:</label>
-                    <select id="importance" name="importance">
-                        <option value="box-red">red</option>
-                        <option value="box-yellow">yellow</option>
-                        <option value="box-blue">blue</option>
-                    </select>
+                        <select id="importance" name="importance">
+                            <option value="box-red">red</option>
+                            <option value="box-yellow">yellow</option>
+                            <option value="box-blue">blue</option>
+                        </select>
                 </div>
                 <div class="form-group">
                     <button type="submit">Add</button>
@@ -33,16 +33,18 @@
             </form>
         </div>
         <ul>
-            {% for habit in habits %}
-            <li class = "task-box {{ habit.importance }}">
-                <a href="{{ url_for('complete_habit', habit_index=loop.index0) }}" class="completed">
-                    {% if habit.completed %}✓{% else %}&#x25CB;{% endif %}
-                </a>
-                {{ habit.name }}
-                <a href="{{ url_for('delete_habit', habit_index=loop.index0) }}" class="delete-task">
-                    <i class="bi bi-trash"></i>
-                </a>
-            </li>
+            {% for list_index in range(habits|length) %}
+                {% for habit in habits[list_index] %}
+                    <li class = "task-box {{ habit.importance }}">
+                        <a href="{{ url_for('complete_habit', list_index=list_index, habit_index=loop.index0) }}" class="completed">
+                            {% if habit.completed %}✓{% else %}&#x25CB;{% endif %}
+                        </a>
+                        {{ habit.name }}
+                        <a href="{{ url_for('delete_habit', list_index=list_index, habit_index=loop.index0) }}" class="delete-task">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </li>
+                {% endfor %}
             {% endfor %}
         </ul>
     </div>
